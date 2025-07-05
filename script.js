@@ -98,7 +98,7 @@ function logToScreen(message) {
 // --- GÁN SỰ KIỆN CHO CÁC NÚT ---
 
 // Nút kết nối / ngắt kết nối
-connectButton.addErntListener('click', connectDevice);
+connectButton.addEventListener('click', connectDevice);
 disconnectButton.addEventListener('click', disconnectDevice);
 
 // Các nút có lệnh AT cố định (data-command)
