@@ -43,8 +43,7 @@ Web UI cung cấp giao diện trực quan để người dùng điều khiển t
 
 - Tài liệu dành cho chuyên viên kỹ thuật của ngân hàng
 - Giả sử người đọc đã có kiến thức về JavaScript
-- Người dùng **bắt buộc cần** phải đọc tài liệu [Y80C Instruction set](/instructions
-- .md) trước khi sử dụng
+- Người dùng **bắt buộc cần** phải đọc tài liệu [Y80C Instruction set](/instructions.md) trước khi sử dụng
 
 Hàm giúp nạp lệnh sang thiết bị và ghi lại log:
 
