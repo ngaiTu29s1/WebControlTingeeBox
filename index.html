@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hemi QR Device Web Controller</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>HEMI QR Device Web Controller</h1>
+        <div class="note">
+            ⚠️ Trang này phải được chạy trên HTTPS hoặc localhost. Yêu cầu Chrome/Edge phiên bản 89+.
+        </div>
+        
+        <div class="panel">
+            <h2>Kết nối</h2>
+            <div class="grid-container" style="grid-template-columns: 1fr 1fr 2fr;">
+                <button id="connect-button" class="primary">Kết nối thiết bị</button>
+                <button id="disconnect-button" class="danger">Ngắt kết nối</button>
+                <div id="connection-status" class="status-disconnected">Chưa kết nối</div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <h2>Tạo Giao Dịch Thanh Toán</h2>
+            <div class="form-group">
+                <label for="account-number">Số tài khoản</label>
+                <input type="text" id="account-number" placeholder="Nhập số tài khoản ngân hàng">
+            </div>
+            <div class="form-group" style="margin-top: 15px;">
+                <label for="payment-amount">Số tiền (VND)</label>
+                <input type="number" id="payment-amount" placeholder="Nhập số tiền cần thanh toán">
+            </div>
+            <button id="create-payment-button" class="primary" style="width: 100%; margin-top: 20px;">Tạo và Gửi đến POS</button>
+            <button id="simulate-success-button" class="success" style="width: 100%; margin-top: 10px;">Giả lập Thanh toán Thành công</button>
+        </div>
+
+        <div class="panel">
+            <h2>Chức năng chính</h2>
+            <div class="grid-container">
+                <button data-command="AT+VER">Kiểm tra phiên bản</button>
+                <button data-command="AT+RESET">Khởi động lại</button>
+                <button data-command="AT+DISPLAY_CLEAR">Xóa màn hình</button>
+                <button data-command="AT+FORMAT">Khôi phục cài đặt gốc</button>
+            </div>
+        </div>
+        
+        <div class="panel">
+            <h2>Hiển thị</h2>
+            <div class="grid-container">
+                <div class="form-group">
+                    <label for="qr-text">Hiển thị mã QR</label>
+                    <input type="text" id="qr-text" placeholder="Nhập text hoặc URL">
+                    <button id="qr-button">Gửi lệnh QR</button>
+                </div>
+                 <div class="form-group">
+                    <label for="text-display">Hiển thị văn bản</label>
+                    <input type="text" id="text-display" placeholder="Nhập văn bản">
+                    <input type="number" id="text-y" value="0" placeholder="Vị trí Y">
+                     <select id="text-size">
+                        <option value="16">Cỡ chữ nhỏ (16)</option>
+                        <option value="24">Cỡ chữ vừa (24)</option>
+                        <option value="32">Cỡ chữ lớn (32)</option>
+                    </select>
+                    <button id="text-button">Gửi lệnh Text</button>
+                </div>
+                <div class="form-group">
+                    <label>Hiển thị hình ảnh</label>
+                    <button data-command="AT+PIC_DISPLAY=9999,0">Logo trang chủ</button>
+                    <button data-command="AT+PIC_DISPLAY=9999,2">Ảnh thành công</button>
+                    <button data-command="AT+PIC_DISPLAY=9999,1">Ảnh thất bại</button>
+                </div>
+                <div class="form-group">
+                    <label for="image-index">Hiển thị ảnh theo chỉ số</label>
+                    <input type="number" id="image-index" placeholder="Nhập chỉ số (0, 1, 2)">
+                    <button id="image-index-button">Hiển thị ảnh</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <h2>Âm thanh</h2>
+            <div class="grid-container">
+                <div class="form-group">
+                    <label>Kiểm tra âm thanh tích hợp</label>
+                    <button data-command="AT+AUDIO_TEST=0">Âm thanh khởi động</button>
+                    <button data-command="AT+AUDIO_TEST=2">Âm thanh thành công</button>
+                    <button data-command="AT+AUDIO_TEST=1">Âm thanh thất bại</button>
+                    <button data-command="AT+AUDIO_TEST=3">Âm thanh hủy GD</button>
+                    <button data-command="AT+AUDIO_TEST=4">Nhắc "Quét mã"</button>
+                </div>
+                <div class="form-group">
+                    <label>Điều chỉnh âm lượng</label>
+                    <button data-command="AT+VOL=0">Nhỏ nhất (0)</button>
+                    <button data-command="AT+VOL=5">Vừa (5)</button>
+                    <button data-command="AT+VOL=7">Lớn nhất (7)</button>
+                </div>
+                <div class="form-group">
+                    <label for="audio-filename">Phát tệp âm thanh tùy chỉnh</label>
+                    <input type="text" id="audio-filename" placeholder="ví dụ: sound.mp3">
+                    <button id="audio-button">Phát</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <h2>Log phản hồi từ thiết bị</h2>
+            <textarea id="log" readonly></textarea>
+        </div>
+    </div>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
