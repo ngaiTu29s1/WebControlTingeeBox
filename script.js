@@ -98,7 +98,7 @@ function logToScreen(message) {
 // --- GÁN SỰ KIỆN CHO CÁC NÚT ---
 
 // Nút kết nối / ngắt kết nối
-connectButton.addEventListener('click', connectDevice);
+connectButton.addErntListener('click', connectDevice);
 disconnectButton.addEventListener('click', disconnectDevice);
 
 // Các nút có lệnh AT cố định (data-command)
@@ -137,7 +137,7 @@ createPaymentButton.addEventListener('click', async () => {
     await sleep(200);
     await sendATCommand(`AT+STR_DISPLAY=280,16, STK: ${accountNumber}`);
     await sleep(200);
-    // await sendATCommand('AT+PLAY_AUDIO=warning_1min.mp3'); 
+    await sendATCommand('AT+PLAY_AUDIO=warning_1min.mp3'); 
 
     logToScreen("--- Đã gửi xong lệnh giao dịch. Bắt đầu đếm ngược 60s ---\n");
 
